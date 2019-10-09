@@ -1,0 +1,84 @@
+html {
+  font-family: "Times New Roman", Times, serif;
+}
+
+body {
+    margin: 10px;
+}
+
+div.header {
+    background-color: #e7e7e7;
+    border-color: 1px solid #c5c5c5;
+    padding: 10px;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+.some-block {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.some-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.some-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.some-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.some-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.container .row {
+  margin-bottom: 10px;
+}
+
+.container .row:last-child {
+  margin-bottom: 0px;
+}
+
+.container .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.container .row .col-label {
+  float: left;
+  width: 25%;
+  margin-right: 10px;
+}
+
+.container .row .col-input {
+  float: left;
+  width: 25%;
+}
