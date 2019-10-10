@@ -1,9 +1,15 @@
 package ankvel.edu.security.logreg.model;
 
+import javax.persistence.*;
 import java.util.Collection;
 
+@Entity
+@Table(name = "some_user")
+@SequenceGenerator(name = "some_user_seq", sequenceName = "some_user_seq")
 public class SomeUser {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "some_user_seq")
     private Long id;
 
     private String name;
@@ -12,6 +18,8 @@ public class SomeUser {
 
     private String password;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Collection<SomeRole> roles;
 
     public SomeUser() {

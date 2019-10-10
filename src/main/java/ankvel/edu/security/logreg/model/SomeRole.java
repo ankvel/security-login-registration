@@ -1,7 +1,14 @@
 package ankvel.edu.security.logreg.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "some_role")
+@SequenceGenerator(name = "some_role_seq", sequenceName = "some_role_seq")
 public class SomeRole {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "some_role_seq")
     private Long id;
 
     private String name;
