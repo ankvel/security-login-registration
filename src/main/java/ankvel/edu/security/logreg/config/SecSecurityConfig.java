@@ -48,7 +48,8 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 //.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasRole("SOME_ADMIN")
+                .antMatchers("/user/verify").hasRole("SOME_USER")
                 .antMatchers("/home").permitAll()
                 .antMatchers("/login*").permitAll()
                 .antMatchers(

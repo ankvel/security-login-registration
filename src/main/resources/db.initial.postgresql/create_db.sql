@@ -1,0 +1,27 @@
+-- User: "some"
+-- DROP USER "some";
+
+CREATE USER "some" WITH
+  ENCRYPTED PASSWORD 'some'
+  NOSUPERUSER
+  INHERIT
+  NOCREATEDB
+  NOCREATEROLE
+  NOREPLICATION;
+
+-- Database: some
+
+-- DROP DATABASE "some";
+
+CREATE DATABASE "some"
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+GRANT ALL ON DATABASE "some" TO "some";
+
+GRANT ALL ON DATABASE "some" TO postgres;
+
+GRANT TEMPORARY, CONNECT ON DATABASE "some" TO PUBLIC;
