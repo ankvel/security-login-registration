@@ -1,7 +1,7 @@
 package ankvel.edu.security.logreg.security;
 
-import ankvel.edu.security.logreg.model.SomeRole;
-import ankvel.edu.security.logreg.model.SomeUser;
+import ankvel.edu.security.logreg.domain.SomeRole;
+import ankvel.edu.security.logreg.domain.SomeUser;
 import ankvel.edu.security.logreg.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,8 +19,12 @@ import java.util.List;
 @Service("userDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public CustomUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

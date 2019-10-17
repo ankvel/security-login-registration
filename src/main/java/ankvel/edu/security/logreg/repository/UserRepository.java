@@ -1,6 +1,6 @@
 package ankvel.edu.security.logreg.repository;
 
-import ankvel.edu.security.logreg.model.SomeUser;
+import ankvel.edu.security.logreg.domain.SomeUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

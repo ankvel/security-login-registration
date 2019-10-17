@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <title>${title}</title>
-        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
         <@header/>
@@ -18,12 +18,13 @@
     <div class="header">
         <nav role="navigation">
             <ul>
-                <li><a href="/"><img src="img/some.svg" alt="SOME LOGO" /></a></li>
+                <li><a href="/"><img src="/img/some.svg" alt="SOME LOGO" /></a></li>
                 <li><a href="/home">Home</a></li>
                 <#if currentUser.isAnonymous()>
                     <li><a href="/login">Login</a></li>
+                    <li><a href="/user/registration">Registration</a></li>
                 <#else>
-                    <li><a href="/user-info">${currentUser.name}</a></li>
+                    <li><a href="/user/info">${currentUser.name}</a></li>
                     <li>
                         <form name="logoutForm" role="form" action="/logout" method="post">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

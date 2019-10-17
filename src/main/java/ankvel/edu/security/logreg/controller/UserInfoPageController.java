@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/user-info")
+@RequestMapping(value = "/user/info")
 public class UserInfoPageController extends BasePageController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String page(Model model) {
-        return "user-info";
+        return "userInfo";
     }
 }

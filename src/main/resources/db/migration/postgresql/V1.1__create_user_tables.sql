@@ -28,8 +28,12 @@ CREATE TABLE users_roles
         ON DELETE NO ACTION
 );
 
-CREATE SEQUENCE some_user_seq START 100;
-CREATE SEQUENCE some_role_seq START 100;
+CREATE SEQUENCE some_user_seq
+    START 100
+    INCREMENT BY 25;
+CREATE SEQUENCE some_role_seq
+    START 100
+    INCREMENT BY 25;
 
 INSERT INTO some_role (id, name)
 VALUES

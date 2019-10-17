@@ -1,10 +1,10 @@
-package ankvel.edu.security.logreg.model;
+package ankvel.edu.security.logreg.domain;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "some_role")
-@SequenceGenerator(name = "some_role_seq", sequenceName = "some_role_seq")
+@SequenceGenerator(name = "some_role_seq", sequenceName = "some_role_seq", allocationSize = 25)
 public class SomeRole {
 
     @Id

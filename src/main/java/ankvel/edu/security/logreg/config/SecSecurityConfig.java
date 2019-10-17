@@ -46,11 +46,16 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http
+                .anonymous()
+                .authorities("ROLE_ANONYMOUS")
+                .and()
                 //.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("SOME_ADMIN")
                 .antMatchers("/user/verify").hasRole("SOME_USER")
                 .antMatchers("/home").permitAll()
+                .antMatchers("/user/registration").permitAll()
+                .antMatchers("/user/info").permitAll()
                 .antMatchers("/login*").permitAll()
                 .antMatchers(
                         "/lib/bootstrap/**",

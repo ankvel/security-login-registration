@@ -1,6 +1,6 @@
 package ankvel.edu.security.logreg.controller;
 
-import ankvel.edu.security.logreg.model.SomeUser;
+import ankvel.edu.security.logreg.domain.SomeUser;
 import ankvel.edu.security.logreg.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
 package ankvel.edu.security.logreg.repository;
 
-import ankvel.edu.security.logreg.model.SomeUser;
-import ankvel.edu.security.logreg.model.UserVerifyToken;
+import ankvel.edu.security.logreg.domain.SomeUser;
+import ankvel.edu.security.logreg.domain.UserVerifyToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.Instant;

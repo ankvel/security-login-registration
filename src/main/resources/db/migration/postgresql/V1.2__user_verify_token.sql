@@ -12,4 +12,6 @@ CREATE TABLE user_verify
             ON DELETE NO ACTION
 );
 
-CREATE SEQUENCE user_verify_seq START 1;
+CREATE SEQUENCE user_verify_seq
+    START 1
+    INCREMENT BY 25;

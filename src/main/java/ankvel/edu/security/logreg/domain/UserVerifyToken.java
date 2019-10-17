@@ -1,4 +1,4 @@
-package ankvel.edu.security.logreg.model;
+package ankvel.edu.security.logreg.domain;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -6,7 +6,7 @@ import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "user_verify")
-@SequenceGenerator(name = "user_verify_seq", sequenceName = "user_verify_seq")
+@SequenceGenerator(name = "user_verify_seq", sequenceName = "user_verify_seq", allocationSize = 25)
 public class UserVerifyToken {
 
     private static final long DEFAULT_EXPIRE_DAYS = 1;

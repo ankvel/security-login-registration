@@ -1,7 +1,7 @@
 package ankvel.edu.security.logreg.service;
 
-import ankvel.edu.security.logreg.model.SomeUser;
-import ankvel.edu.security.logreg.model.UserVerifyToken;
+import ankvel.edu.security.logreg.domain.SomeUser;
+import ankvel.edu.security.logreg.domain.UserVerifyToken;
 import ankvel.edu.security.logreg.repository.UserRepository;
 import ankvel.edu.security.logreg.repository.UserVerifyTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,19 @@ import java.util.UUID;
 import static java.util.Collections.emptyList;
 
 @Service
-public class SomeUserService implements UserService {
+public class UserServiceImpl implements UserService {
+
+    private final UserRepository userRepository;
+
+    private final UserVerifyTokenRepository userVerifyTokenRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private UserVerifyTokenRepository userVerifyTokenRepository;
+    public UserServiceImpl(
+            UserRepository userRepository,
+            UserVerifyTokenRepository userVerifyTokenRepository) {
+        this.userRepository = userRepository;
+        this.userVerifyTokenRepository = userVerifyTokenRepository;
+    }
 
     @Override
     public SomeUser getCurrentUser() {
