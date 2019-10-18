@@ -1,12 +1,11 @@
 package ankvel.edu.security.logreg.controller;
 
 import ankvel.edu.security.logreg.dto.UserRegistrationRequest;
+import ankvel.edu.security.logreg.dto.UserVerificationValidationResult;
 import ankvel.edu.security.logreg.service.UserRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -30,5 +29,11 @@ public class UserRegistrationController extends BasePageController {
     public String register(@ModelAttribute("userRegistrationRequest") @Valid UserRegistrationRequest userRegistrationRequest) {
         userRegistrationService.registerUser(userRegistrationRequest);
         return "userRegistrationSuccess";
+    }
+
+    @RequestMapping(value = "/verify/{token}", method = RequestMethod.GET)
+    @ResponseBody
+    public UserVerificationValidationResult verifyUser(@PathVariable String token) {
+        return userRegistrationService.verifyUser(token);
     }
 }

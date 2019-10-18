@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
 @Entity
 @Table(name = "user_verification")
 @SequenceGenerator(name = "user_verification_seq", sequenceName = "user_verification_seq", allocationSize = 25)
-public class UserVerificationToken {
+public class UserVerification {
 
     private static final long DEFAULT_EXPIRE_DAYS = 1;
 
@@ -25,10 +25,10 @@ public class UserVerificationToken {
 
     private Instant expireDate;
 
-    public UserVerificationToken() {
+    public UserVerification() {
     }
 
-    public UserVerificationToken(String token, SomeUser user) {
+    public UserVerification(String token, SomeUser user) {
         this.token = token;
         this.user = user;
         createDate = Instant.now();
