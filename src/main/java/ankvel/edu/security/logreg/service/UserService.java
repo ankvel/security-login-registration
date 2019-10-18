@@ -1,11 +1,11 @@
 package ankvel.edu.security.logreg.service;
 
 import ankvel.edu.security.logreg.domain.SomeUser;
-import ankvel.edu.security.logreg.domain.UserVerifyToken;
+import ankvel.edu.security.logreg.domain.UserVerificationToken;
 
 public interface UserService {
 
     SomeUser getCurrentUser();
 
-    UserVerifyToken createVerifyToken(SomeUser user);
+    UserVerificationToken createVerificationToken(SomeUser user);
 }

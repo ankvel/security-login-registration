@@ -5,14 +5,14 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 @Entity
-@Table(name = "user_verify")
-@SequenceGenerator(name = "user_verify_seq", sequenceName = "user_verify_seq", allocationSize = 25)
-public class UserVerifyToken {
+@Table(name = "user_verification")
+@SequenceGenerator(name = "user_verification_seq", sequenceName = "user_verification_seq", allocationSize = 25)
+public class UserVerificationToken {
 
     private static final long DEFAULT_EXPIRE_DAYS = 1;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "some_user_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_verification_seq")
     private Long id;
 
     private String token;
@@ -25,10 +25,10 @@ public class UserVerifyToken {
 
     private Instant expireDate;
 
-    public UserVerifyToken() {
+    public UserVerificationToken() {
     }
 
-    public UserVerifyToken(String token, SomeUser user) {
+    public UserVerificationToken(String token, SomeUser user) {
         this.token = token;
         this.user = user;
         createDate = Instant.now();

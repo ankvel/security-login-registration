@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserVerifyTokenController {
+public class UserVerificationTokenController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/verify")
-    public String verify() {
+    @GetMapping("/user/verification")
+    public String verification() {
         SomeUser currentUser = userService.getCurrentUser();
-        return userService.createVerifyToken(currentUser).getToken();
+        return userService.createVerificationToken(currentUser).getToken();
     }
 }

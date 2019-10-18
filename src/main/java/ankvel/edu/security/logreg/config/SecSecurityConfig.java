@@ -1,7 +1,5 @@
 package ankvel.edu.security.logreg.config;
 
-import ankvel.edu.security.logreg.security.CustomAccessDeniedHandler;
-import ankvel.edu.security.logreg.security.CustomAuthenticationFailureHandler;
 import ankvel.edu.security.logreg.security.CustomAuthenticationProvider;
 import ankvel.edu.security.logreg.security.CustomLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 
@@ -52,7 +48,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("SOME_ADMIN")
-                .antMatchers("/user/verify").hasRole("SOME_USER")
+                .antMatchers("/user/verification").hasRole("SOME_USER")
                 .antMatchers("/home").permitAll()
                 .antMatchers("/user/registration").permitAll()
                 .antMatchers("/user/info").permitAll()
@@ -81,16 +77,6 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public LogoutSuccessHandler logoutSuccessHandler() {
         return new CustomLogoutSuccessHandler();
-    }
-
-    @Bean
-    public AccessDeniedHandler accessDeniedHandler() {
-        return new CustomAccessDeniedHandler();
-    }
-
-    @Bean
-    public AuthenticationFailureHandler authenticationFailureHandler() {
-        return new CustomAuthenticationFailureHandler();
     }
 
     @Bean

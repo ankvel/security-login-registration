@@ -33,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 () -> new UsernameNotFoundException("No user found with username: " + email));
 
         return new User(someUser.getEmail(), someUser.getPassword(),
-                true, true, true, true,
+                false, true, true, true,
                 getGrantedAuthorities(someUser.getRoles()));
     }
 

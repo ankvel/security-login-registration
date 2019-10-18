@@ -5,7 +5,7 @@ import ankvel.edu.security.logreg.domain.SomeUser;
 import ankvel.edu.security.logreg.dto.UserRegistrationRequest;
 import ankvel.edu.security.logreg.repository.RoleRepository;
 import ankvel.edu.security.logreg.repository.UserRepository;
-import ankvel.edu.security.logreg.repository.UserVerifyTokenRepository;
+import ankvel.edu.security.logreg.repository.UserVerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import static java.util.Collections.singletonList;
 public class UserRegistrationServiceImpl implements UserRegistrationService {
 
 
-    private final UserVerifyTokenRepository userVerifyTokenRepository;
+    private final UserVerificationTokenRepository userVerificationTokenRepository;
 
     private final RoleRepository roleRepository;
 
@@ -26,11 +26,11 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 
     @Autowired
     public UserRegistrationServiceImpl(
-            UserVerifyTokenRepository userVerifyTokenRepository,
+            UserVerificationTokenRepository userVerificationTokenRepository,
             RoleRepository roleRepository,
             UserRepository userRepository,
             PasswordEncoder passwordEncoder) {
-        this.userVerifyTokenRepository = userVerifyTokenRepository;
+        this.userVerificationTokenRepository = userVerificationTokenRepository;
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;

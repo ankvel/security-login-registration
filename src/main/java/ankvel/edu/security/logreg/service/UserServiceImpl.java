@@ -1,9 +1,9 @@
 package ankvel.edu.security.logreg.service;
 
 import ankvel.edu.security.logreg.domain.SomeUser;
-import ankvel.edu.security.logreg.domain.UserVerifyToken;
+import ankvel.edu.security.logreg.domain.UserVerificationToken;
 import ankvel.edu.security.logreg.repository.UserRepository;
-import ankvel.edu.security.logreg.repository.UserVerifyTokenRepository;
+import ankvel.edu.security.logreg.repository.UserVerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,14 +20,14 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    private final UserVerifyTokenRepository userVerifyTokenRepository;
+    private final UserVerificationTokenRepository userVerificationTokenRepository;
 
     @Autowired
     public UserServiceImpl(
             UserRepository userRepository,
-            UserVerifyTokenRepository userVerifyTokenRepository) {
+            UserVerificationTokenRepository userVerificationTokenRepository) {
         this.userRepository = userRepository;
-        this.userVerifyTokenRepository = userVerifyTokenRepository;
+        this.userVerificationTokenRepository = userVerificationTokenRepository;
     }
 
     @Override
@@ -46,10 +46,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVerifyToken createVerifyToken(SomeUser user) {
+    public UserVerificationToken createVerificationToken(SomeUser user) {
         String token = UUID.randomUUID().toString();
-        UserVerifyToken result = new UserVerifyToken(token, user);
-        userVerifyTokenRepository.save(result);
+        UserVerificationToken result = new UserVerificationToken(token, user);
+        userVerificationTokenRepository.save(result);
         return result;
     }
 }
