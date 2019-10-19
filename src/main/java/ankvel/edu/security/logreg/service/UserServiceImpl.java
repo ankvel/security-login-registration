@@ -1,7 +1,6 @@
 package ankvel.edu.security.logreg.service;
 
 import ankvel.edu.security.logreg.domain.SomeUser;
-import ankvel.edu.security.logreg.domain.UserVerification;
 import ankvel.edu.security.logreg.repository.UserRepository;
 import ankvel.edu.security.logreg.repository.UserVerificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 import static java.util.Collections.emptyList;
 
@@ -43,13 +40,5 @@ public class UserServiceImpl implements UserService {
         }
         return userRepository.findByEmail(name).orElseThrow(() ->
                 new UsernameNotFoundException("No user found with username: " + name));
-    }
-
-    @Override
-    public UserVerification createVerificationToken(SomeUser user) {
-        String token = UUID.randomUUID().toString();
-        UserVerification result = new UserVerification(token, user);
-        userVerificationRepository.save(result);
-        return result;
     }
 }

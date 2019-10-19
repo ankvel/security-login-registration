@@ -50,6 +50,10 @@
             </div>
         </div>
     </form>
+
+    <#if registrationErrors??>
+        <@u.showMessagesData messagesData = registrationErrors/>
+    </#if>
 </@u.page>
 
 

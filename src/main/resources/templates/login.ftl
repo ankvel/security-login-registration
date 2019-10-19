@@ -1,14 +1,8 @@
 <#import "lib/utils.ftl" as u>
 <#import "/spring.ftl" as spring/>
 <@u.page title="Log in">
-    <div class="some-block some-info">
-        You can use:
-        <ul>
-            <li>some1@gmail.com/some1</li>
-            <li>some2@gmail.com/some2</li>
-            <li>some3@gmail.com/some3</li>
-        </ul>
-    </div>
+
+    <@u.showMessagesData messagesData = loginInfo/>
 
     <form name="loginForm" role="form" action="/login" method="post" onsubmit="return validate()">
 

@@ -5,6 +5,7 @@ import ankvel.edu.security.logreg.domain.SomeUser;
 import ankvel.edu.security.logreg.domain.UserVerification;
 import ankvel.edu.security.logreg.dto.UserRegistrationRequest;
 import ankvel.edu.security.logreg.dto.UserVerificationValidationResult;
+import ankvel.edu.security.logreg.exception.UserAlreadyExistsException;
 import ankvel.edu.security.logreg.repository.RoleRepository;
 import ankvel.edu.security.logreg.repository.UserRepository;
 import ankvel.edu.security.logreg.repository.UserVerificationRepository;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static java.util.Collections.singletonList;
@@ -42,6 +44,11 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 
     @Override
     public SomeUser registerUser(UserRegistrationRequest registrationRequest) {
+
+        if (emailExists(registrationRequest.getEmail())) {
+            throw new UserAlreadyExistsException(registrationRequest.getEmail());
+        }
+
         SomeUser user = createUserFromRegistrationRequest(registrationRequest);
         SomeUser savedUser = userRepository.save(user);
 
@@ -60,12 +67,13 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 
     @Override
     public UserVerificationValidationResult verifyUser(String token) {
-        UserVerification userVerification = userVerificationRepository.findByToken(token);
-        if (userVerification == null) {
-            return new UserVerificationValidationResult(false);
-        } else {
-            userVerificationRepository.delete(userVerification);
+
+        Optional<UserVerification> userVerificationOpt = userVerificationRepository.findByToken(token);
+        if (userVerificationOpt.isPresent()) {
+            userVerificationRepository.delete(userVerificationOpt.get());
             return new UserVerificationValidationResult(true);
+        } else {
+            return new UserVerificationValidationResult(false);
         }
     }
 
@@ -77,5 +85,9 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
         SomeRole role = roleRepository.findByName("ROLE_SOME_USER");
         someUser.setRoles(singletonList(role));
         return someUser;
+    }
+
+    private boolean emailExists(String email) {
+        return userRepository.findByEmail(email).isPresent();
     }
 }

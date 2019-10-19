@@ -1,6 +1,7 @@
 package ankvel.edu.security.logreg.dto;
 
 public class UserVerificationValidationResult {
+
     private final boolean success;
 
     public UserVerificationValidationResult(boolean success) {
