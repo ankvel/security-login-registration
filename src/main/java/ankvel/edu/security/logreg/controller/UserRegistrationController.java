@@ -8,6 +8,7 @@ import ankvel.edu.security.logreg.service.UserRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,11 +34,15 @@ public class UserRegistrationController extends BasePageController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String register(
             @ModelAttribute("userRegistrationRequest") @Valid UserRegistrationRequest userRegistrationRequest,
+            BindingResult bindingResult,
             Model model) {
         try {
             userRegistrationService.registerUser(userRegistrationRequest);
         } catch (UserAlreadyExistsException ex) {
             return handleUserAlreadyExists(ex, model);
+        }
+        if (bindingResult.hasErrors()) {
+            return "userRegistration";
         }
         return "userRegistrationSuccess";
     }

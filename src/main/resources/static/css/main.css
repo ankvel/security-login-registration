@@ -6,9 +6,14 @@ body {
     margin: 10px;
 }
 
+input {
+    border: 1px solid #c5c5c5;
+    border-radius: 2px;
+}
+
 div.header {
     background-color: #e7e7e7;
-    border-color: 1px solid #c5c5c5;
+    border: 1px solid #c5c5c5;
     padding: 10px;
 }
 
@@ -73,12 +78,9 @@ nav ul li {
 }
 
 .container .row .col-label {
-  float: left;
-  width: 25%;
   margin-right: 10px;
 }
 
 .container .row .col-input {
-  float: left;
-  width: 25%;
+  margin-right: 10px;
 }

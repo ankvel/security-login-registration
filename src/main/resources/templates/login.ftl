@@ -7,7 +7,7 @@
     <form name="loginForm" role="form" action="/login" method="post" onsubmit="return validate()">
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <div class="container" style="width: 300px">
+        <div class="container">
             <div class="row">
                 <div class="col-label">
                     <label for="username">Username</label>

@@ -5,7 +5,7 @@
     <form name="loginForm" role="form" action="" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-        <div class="container" style="width: 300px">
+        <div class="container">
 
             <div class="row">
                 <div class="col-label">

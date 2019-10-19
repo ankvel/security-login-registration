@@ -1,13 +1,19 @@
 package ankvel.edu.security.logreg.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 public class UserRegistrationRequest {
 
+    @NotEmpty
     private String name;
 
+    @NotEmpty
     private String email;
 
+    @NotEmpty
     private String password;
 
+    @NotEmpty
     private String passwordAgain;
 
     public String getName() {
