@@ -1,9 +1,10 @@
 CREATE TABLE some_user
 (
     id BIGINT NOT NULL,
-    email CHARACTER VARYING(255),
+    email  CHARACTER VARYING(255),
     name CHARACTER VARYING(255),
     password CHARACTER VARYING(255),
+    enabled BOOLEAN,
     CONSTRAINT some_user_pkey PRIMARY KEY (id)
 );
 
@@ -40,11 +41,11 @@ VALUES
     (1, 'ROLE_SOME_ADMIN'),
     (2, 'ROLE_SOME_USER');
 
-INSERT INTO some_user (id, name, email, password)
+INSERT INTO some_user (id, name, email, password, enabled)
 VALUES
-    (1, 'some1', 'some1@gmail.com', '$2a$11$8Y0YDeveSkuqQ5vuxlnKdOOpbiPXkoF9OMfM5iVBzqYSh5RwHlmOq'),
-    (2, 'some2', 'some2@gmail.com', '$2a$11$zkifoChstkHpkyobApwUN.3Maznw4XX63t2/gAgtdBvH1XYAb5yQu'),
-    (3, 'some3', 'some3@gmail.com', '$2a$11$Ry/taAHsNgYZLlVTfwjs5.YCk7YcYCEZRprRcjosJOsy0eHQ/2u12');
+    (1, 'some1', 'some1@gmail.com', '$2a$11$8Y0YDeveSkuqQ5vuxlnKdOOpbiPXkoF9OMfM5iVBzqYSh5RwHlmOq', TRUE),
+    (2, 'some2', 'some2@gmail.com', '$2a$11$zkifoChstkHpkyobApwUN.3Maznw4XX63t2/gAgtdBvH1XYAb5yQu', TRUE),
+    (3, 'some3', 'some3@gmail.com', '$2a$11$Ry/taAHsNgYZLlVTfwjs5.YCk7YcYCEZRprRcjosJOsy0eHQ/2u12', TRUE);
 
 INSERT INTO users_roles (user_id, role_id)
 VALUES

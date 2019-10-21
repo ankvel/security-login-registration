@@ -2,15 +2,15 @@ package ankvel.edu.security.logreg.controller;
 
 import ankvel.edu.security.logreg.dto.MessagesData;
 import ankvel.edu.security.logreg.dto.UserRegistrationRequest;
-import ankvel.edu.security.logreg.dto.UserVerificationValidationResult;
 import ankvel.edu.security.logreg.exception.UserAlreadyExistsException;
 import ankvel.edu.security.logreg.service.UserRegistrationService;
-import ankvel.edu.security.logreg.service.UserVerificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
@@ -22,14 +22,10 @@ public class UserRegistrationController extends BasePageController {
 
     private final UserRegistrationService userRegistrationService;
 
-    private final UserVerificationService userVerificationService;
-
     @Autowired
     public UserRegistrationController(
-            UserRegistrationService userRegistrationService,
-            UserVerificationService userVerificationService) {
+            UserRegistrationService userRegistrationService) {
         this.userRegistrationService = userRegistrationService;
-        this.userVerificationService = userVerificationService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -51,12 +47,6 @@ public class UserRegistrationController extends BasePageController {
             return "userRegistration";
         }
         return "userRegistrationSuccess";
-    }
-
-    @RequestMapping(value = "/verify/{token}", method = RequestMethod.GET)
-    @ResponseBody
-    public UserVerificationValidationResult verifyUser(@PathVariable String token) {
-        return userVerificationService.verifyUser(token);
     }
 
     private String handleUserAlreadyExists(UserAlreadyExistsException ex, Model model) {
