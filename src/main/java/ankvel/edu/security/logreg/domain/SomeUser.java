@@ -68,4 +68,12 @@ public class SomeUser {
     public void setRoles(Collection<SomeRole> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString() {
+        return "SomeUser{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
