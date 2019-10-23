@@ -1,6 +1,8 @@
 <#import "lib/utils.ftl" as u>
 <#import "/spring.ftl" as spring/>
-<@u.page title="Log in">
+
+<#assign pageTitle><@spring.message "page.login.title"/></#assign>
+<@u.page title="${pageTitle}">
 
     <@u.showMessagesData messagesData = loginInfo/>
 

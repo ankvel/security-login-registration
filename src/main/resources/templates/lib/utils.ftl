@@ -19,20 +19,20 @@
         <nav role="navigation">
             <ul>
                 <li><a href="/"><img src="/img/some.svg" alt="SOME LOGO" /></a></li>
-                <li><a href="/home">Home</a></li>
+                <li><a href="/home"><@spring.message "nav.item.home"/></a></li>
                 <#if currentUser??>
-                <#if currentUser.isAnonymous()>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/user/registration">Registration</a></li>
-                <#else>
-                    <li><a href="/user/info">${currentUser.name}</a></li>
-                    <li>
-                        <form name="logoutForm" role="form" action="/logout" method="post">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <button type="submit">Logout</button>
-                        </form>
-                    </li>
-                </#if>
+                    <#if currentUser.isAnonymous()>
+                        <li><a href="/login"><@spring.message "nav.item.login"/></a></li>
+                        <li><a href="/user/registration"><@spring.message "nav.item.registration"/></a></li>
+                    <#else>
+                        <li><a href="/user/info">${currentUser.name}</a></li>
+                        <li>
+                            <form name="logoutForm" role="form" action="/logout" method="post">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <button type="submit"><@spring.message "nav.item.logout"/></button>
+                            </form>
+                        </li>
+                    </#if>
                 </#if>
             </ul>
         </nav>
