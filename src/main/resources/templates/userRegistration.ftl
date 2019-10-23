@@ -1,7 +1,7 @@
 <#import "lib/utils.ftl" as u>
 <#import "/spring.ftl" as spring/>
 
-<@u.page title="Registration">
+<@u.page title="${rc.getMessage('user.registration.title', .locale)}">
     <form name="loginForm" role="form" action="" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
