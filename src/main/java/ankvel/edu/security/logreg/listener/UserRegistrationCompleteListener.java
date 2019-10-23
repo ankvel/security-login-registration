@@ -6,7 +6,6 @@ import ankvel.edu.security.logreg.dto.UserRegistrationCompleteEvent;
 import ankvel.edu.security.logreg.service.UserVerificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
 import org.springframework.mail.SimpleMailMessage;
@@ -27,12 +26,11 @@ public class UserRegistrationCompleteListener {
 
     private final String appBaseUrl;
 
-    @Autowired
     public UserRegistrationCompleteListener(
             UserVerificationService userVerificationService,
             JavaMailSender mailSender,
-            @Value("some.app.support.email") String from,
-            @Value("some.app.base.url") String appBaseUrl) {
+            @Value("${some.app.support.email}") String from,
+            @Value("${some.app.base.url}") String appBaseUrl) {
         this.userVerificationService = userVerificationService;
         this.mailSender = mailSender;
         this.from = from;
@@ -56,7 +54,7 @@ public class UserRegistrationCompleteListener {
 
         String recipientAddress = user.getEmail();
         String subject = "Registration Confirmation";
-        String confirmationUrl = appBaseUrl + "/verification/confirm/" + token;
+        String confirmationUrl = appBaseUrl + "/user/verification/confirm/" + token;
         String message = "Please complete your registration by following the confirmation URL";
 
         SimpleMailMessage email = new SimpleMailMessage();
