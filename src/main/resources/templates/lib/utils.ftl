@@ -7,14 +7,15 @@
         <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
-        <@header/>
+        <@pageHeader/>
         <h1>${title}</h1>
         <#nested>
+        <@pageBottom/>
     </body>
 </html>
 </#macro>
 
-<#macro header>
+<#macro pageHeader>
     <div class="header">
         <nav role="navigation">
             <ul>
@@ -29,7 +30,7 @@
                         <li>
                             <form name="logoutForm" role="form" action="/logout" method="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <button type="submit"><@spring.message "nav.item.logout"/></button>
+                                <button type="submit" class="some-button"><@spring.message "nav.item.logout"/></button>
                             </form>
                         </li>
                     </#if>
@@ -39,19 +40,25 @@
     </div>
 </#macro>
 
+<#macro pageBottom>
+    <div class="bottom">
+
+    </div>
+</#macro>
+
 <#macro showMessagesData messagesData>
     <#switch messagesData.type>
         <#case "INFO">
-            <div class="some-block some-info">
+            <div class="some-block some-info some-border">
             <#break>
         <#case "WARN">
-            <div class="some-block some-warn">
+            <div class="some-block some-warn some-border">
             <#break>
         <#case "ERROR">
-            <div class="some-block some-error">
+            <div class="some-block some-error some-border">
             <#break>
         <#default>
-            <div class="some-block">
+            <div class="some-block some-border">
     </#switch>
         <#if messagesData.message??>${messagesData.message}</#if>
         <#if messagesData.messages??>

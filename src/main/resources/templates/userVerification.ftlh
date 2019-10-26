@@ -4,8 +4,12 @@
 <#assign pageTitle><@spring.message "page.user.verification.title"/></#assign>
 <@u.page title="${pageTitle}">
     <#if verificationResult?? && verificationResult.success>
-        <@spring.message "page.user.verification.confirmed"/>
+        <div class="some-block some-success some-border">
+            <@spring.message "page.user.verification.confirmed"/>
+        </div>
     <#else>
-        <@spring.message "page.user.verification.rejected"/>
+        <div class="some-block some-error some-border">
+            <@spring.message "page.user.verification.rejected"/>
+        </div>
     </#if>
 </@u.page>

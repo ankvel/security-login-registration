@@ -12,9 +12,19 @@ input {
 }
 
 div.header {
-    background-color: #e7e7e7;
-    border: 1px solid #c5c5c5;
+    background-color: #c6c6c6;
     padding: 10px;
+    margin-left: -10px;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+
+div.bottom {
+    background-color: #c6c6c6;
+    padding: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    min-height: 200px;
 }
 
 nav ul {
@@ -27,8 +37,9 @@ nav ul li {
 }
 
 .some-block {
+    background-color: #f2f2f2;
+    border-color: #e4e4e4;
     padding: 10px;
-    border-radius: 5px;
     margin-bottom: 10px;
 }
 
@@ -56,31 +67,50 @@ nav ul li {
     border-color: #ebccd1;
 }
 
-.container {
-  border-radius: 5px;
+.some-border {
+    border-radius: 4px;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.some-container {
   background-color: #f2f2f2;
+  border-color: #e4e4e4;
   padding: 10px;
   margin-bottom: 10px;
 }
 
-.container .row {
+.some-container .row {
   margin-bottom: 10px;
 }
 
-.container .row:last-child {
+.some-container .row:last-child {
   margin-bottom: 0px;
 }
 
-.container .row:after {
+.some-container .row:after {
   content: "";
   display: table;
   clear: both;
 }
 
-.container .row .col-label {
+.some-container .row .col-label {
   margin-right: 10px;
 }
 
-.container .row .col-input {
+.some-container .row .col-input {
   margin-right: 10px;
+}
+
+.some-button {
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+.some-input {
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    border-radius: 4px;
 }

@@ -6,14 +6,14 @@
     <form name="loginForm" role="form" action="" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-        <div class="container">
+        <div class="some-container some-border">
 
             <div class="row">
                 <div class="col-label">
                     <label for="username"><@spring.message "page.user.registration.email"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="text" name="email" id="email" autofocus/>
+                    <input type="text" class="some-input" name="email" id="email" autofocus/>
                 </div>
             </div>
 
@@ -22,7 +22,7 @@
                     <label for="name"><@spring.message "page.user.registration.name"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="text" name="name" id="name" autofocus/>
+                    <input type="text" class="some-input" name="name" id="name" autofocus/>
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                     <label for="password"><@spring.message "page.user.registration.password"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="password" name="password" id="password" />
+                    <input type="password" class="some-input" name="password" id="password" />
                 </div>
             </div>
 
@@ -40,13 +40,13 @@
                     <label for="password"><@spring.message "page.user.registration.repeat.password"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="password" name="passwordAgain" id="passwordAgain" />
+                    <input type="password" class="some-input" name="passwordAgain" id="passwordAgain" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-label">
-                    <button type="submit"><@spring.message "page.user.registration.submit"/></button>
+                    <button type="submit" class="some-button"><@spring.message "page.user.registration.submit"/></button>
                 </div>
             </div>
         </div>

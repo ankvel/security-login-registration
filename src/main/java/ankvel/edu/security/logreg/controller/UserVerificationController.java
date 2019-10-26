@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/user/verification")
-public class UserVerificationController {
+public class UserVerificationController extends BasePageController {
 
     private final UserVerificationService userVerificationService;
 

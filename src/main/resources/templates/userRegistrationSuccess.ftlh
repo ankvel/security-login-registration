@@ -3,9 +3,9 @@
 
 <#assign pageTitle><@spring.message "page.user.registration.success.title"/></#assign>
 <@u.page title="${pageTitle}">
-    <p>
-        <@spring.message "user.registration.verify.request"/>
-    </p>
+    <div class="some-block some-success some-border">
+        <@spring.message "info.user.verification.request"/>
+    </div>
 </@u.page>
 
 

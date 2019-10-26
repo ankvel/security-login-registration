@@ -9,13 +9,13 @@
     <form name="loginForm" role="form" action="/login" method="post" onsubmit="return validate()">
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <div class="container">
+        <div class="some-container some-border">
             <div class="row">
                 <div class="col-label">
                     <label for="username"><@spring.message "page.login.email"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="text" name="username" id="username" autofocus/>
+                    <input type="text" class="some-input" name="username" id="username" autofocus/>
                 </div>
             </div>
             <div class="row">
@@ -23,19 +23,19 @@
                     <label for="password"><@spring.message "page.login.password"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="password" name="password" id="password" />
+                    <input type="password" class="some-input" name="password" id="password" />
                 </div>
             </div>
             <div class="row">
                 <div class="col-label">
-                    <button type="submit"><@spring.message "page.login.submit"/></button>
+                    <button type="submit" class="some-button"><@spring.message "page.login.submit"/></button>
                 </div>
             </div>
         </div>
     </form>
 
     <#if Session.SPRING_SECURITY_LAST_EXCEPTION?? && Session.SPRING_SECURITY_LAST_EXCEPTION.message?has_content>
-        <div class="some-block some-error"><@spring.message "login.bad.credentials"/></div>
+        <div class="some-block some-error"><@spring.message "error.login.bad.credentials"/></div>
     </#if>
 
     <script src="js/main.js"></script>
