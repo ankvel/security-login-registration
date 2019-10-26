@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-label">
-                    <label for="username">Username</label>
+                    <label for="username"><@spring.message "page.login.email"/></label>
                 </div>
                 <div class="col-input">
                     <input type="text" name="username" id="username" autofocus/>
@@ -20,7 +20,7 @@
             </div>
             <div class="row">
                 <div class="col-label">
-                    <label for="password">Password</label>
+                    <label for="password"><@spring.message "page.login.password"/></label>
                 </div>
                 <div class="col-input">
                     <input type="password" name="password" id="password" />
@@ -28,7 +28,7 @@
             </div>
             <div class="row">
                 <div class="col-label">
-                    <button type="submit">Submit</button>
+                    <button type="submit"><@spring.message "page.login.submit"/></button>
                 </div>
             </div>
         </div>

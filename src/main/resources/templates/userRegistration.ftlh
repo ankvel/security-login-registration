@@ -10,7 +10,7 @@
 
             <div class="row">
                 <div class="col-label">
-                    <label for="username">Email</label>
+                    <label for="username"><@spring.message "page.user.registration.email"/></label>
                 </div>
                 <div class="col-input">
                     <input type="text" name="email" id="email" autofocus/>
@@ -19,7 +19,7 @@
 
             <div class="row">
                 <div class="col-label">
-                    <label for="name">Name</label>
+                    <label for="name"><@spring.message "page.user.registration.name"/></label>
                 </div>
                 <div class="col-input">
                     <input type="text" name="name" id="name" autofocus/>
@@ -28,7 +28,7 @@
 
             <div class="row">
                 <div class="col-label">
-                    <label for="password">Password</label>
+                    <label for="password"><@spring.message "page.user.registration.password"/></label>
                 </div>
                 <div class="col-input">
                     <input type="password" name="password" id="password" />
@@ -37,7 +37,7 @@
 
             <div class="row">
                 <div class="col-label">
-                    <label for="password">Repeat Password</label>
+                    <label for="password"><@spring.message "page.user.registration.repeat.password"/></label>
                 </div>
                 <div class="col-input">
                     <input type="password" name="passwordAgain" id="passwordAgain" />
@@ -46,7 +46,7 @@
 
             <div class="row">
                 <div class="col-label">
-                    <button type="submit">Register</button>
+                    <button type="submit"><@spring.message "page.user.registration.submit"/></button>
                 </div>
             </div>
         </div>
