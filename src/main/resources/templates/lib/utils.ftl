@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <title>${title}</title>
         <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <script src="/js/someService.js"></script>
     </head>
     <body>
         <@pageHeader/>

@@ -6,7 +6,8 @@
 
     <@u.showMessagesData messagesData = loginInfo/>
 
-    <form name="loginForm" role="form" action="/login" method="post" onsubmit="return validate()">
+    <form name="loginForm" role="form" action="/login" method="post"
+            onsubmit="return window.someNamespace.loginPageService.validateForm()">
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="some-container some-border">
@@ -38,6 +39,5 @@
         <div class="some-block some-error"><@spring.message "error.login.bad.credentials"/></div>
     </#if>
 
-    <script src="js/main.js"></script>
-    <script src="js/login.js"></script>
+    <script src="/js/loginPageService.js"></script>
 </@u.page>
