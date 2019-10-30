@@ -6,39 +6,40 @@
         <title>${title}</title>
         <link rel="stylesheet" type="text/css" href="/css/main.css">
         <script src="/js/someService.js"></script>
+        <script src="/js/navigationPanelService.js"></script>
     </head>
     <body>
-        <@pageHeader/>
-        <h1>${title}</h1>
-        <#nested>
+        <@navigation/>
+        <div class="content">
+            <h1>${title}</h1>
+            <#nested>
+        </div>
         <@pageBottom/>
     </body>
 </html>
 </#macro>
 
-<#macro pageHeader>
-    <div class="header">
-        <nav role="navigation">
-            <ul>
-                <li><a href="/"><img src="/img/some.svg" alt="SOME LOGO" /></a></li>
-                <li><a href="/home"><@spring.message "nav.item.home"/></a></li>
-                <#if currentUser??>
-                    <#if currentUser.isAnonymous()>
-                        <li><a href="/login"><@spring.message "nav.item.login"/></a></li>
-                        <li><a href="/user/registration"><@spring.message "nav.item.registration"/></a></li>
-                    <#else>
-                        <li><a href="/user/info">${currentUser.name}</a></li>
-                        <li>
-                            <form name="logoutForm" role="form" action="/logout" method="post">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <button type="submit" class="some-button"><@spring.message "nav.item.logout"/></button>
-                            </form>
-                        </li>
-                    </#if>
+<#macro navigation>
+    <nav role="navigation">
+        <ul>
+            <li><a href="/"><img src="/img/some.svg" alt="SOME LOGO" /></a></li>
+            <li><a href="/home"><@spring.message "nav.item.home"/></a></li>
+            <#if currentUser??>
+                <#if currentUser.isAnonymous()>
+                    <li><a href="/login"><@spring.message "nav.item.login"/></a></li>
+                    <li><a href="/user/registration"><@spring.message "nav.item.registration"/></a></li>
+                <#else>
+                    <li><a href="/user/info">${currentUser.name}</a></li>
+                    <li>
+                        <form name="logoutForm" role="form" action="/logout" method="post">
+                            <a id="logout" href="#"><@spring.message "nav.item.logout"/></a>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </form>
+                    </li>
                 </#if>
-            </ul>
-        </nav>
-    </div>
+            </#if>
+        </ul>
+    </nav>
 </#macro>
 
 <#macro pageBottom>

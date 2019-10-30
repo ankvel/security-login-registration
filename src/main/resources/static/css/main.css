@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    margin: 10px;
+    margin: 0px;
 }
 
 input {
@@ -11,12 +11,15 @@ input {
     border-radius: 2px;
 }
 
-div.header {
+nav {
     background-color: #c6c6c6;
+    position: fixed;
+    width: 100%;
     padding: 10px;
-    margin-left: -10px;
-    margin-top: -10px;
-    margin-right: -10px;
+}
+
+div.content {
+    padding: 50px;
 }
 
 div.bottom {
