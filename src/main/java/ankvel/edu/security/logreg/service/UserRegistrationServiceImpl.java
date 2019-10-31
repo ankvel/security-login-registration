@@ -7,7 +7,6 @@ import ankvel.edu.security.logreg.dto.UserRegistrationRequest;
 import ankvel.edu.security.logreg.exception.UserAlreadyExistsException;
 import ankvel.edu.security.logreg.repository.RoleRepository;
 import ankvel.edu.security.logreg.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +23,6 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
     public UserRegistrationServiceImpl(
             RoleRepository roleRepository,
             UserRepository userRepository,

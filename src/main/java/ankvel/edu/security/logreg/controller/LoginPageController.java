@@ -1,6 +1,7 @@
 package ankvel.edu.security.logreg.controller;
 
 import ankvel.edu.security.logreg.dto.MessagesData;
+import ankvel.edu.security.logreg.service.UserService;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,10 @@ public class LoginPageController extends BasePageController {
 
     private final MessageSource messageSource;
 
-    public LoginPageController(MessageSource messageSource) {
+    public LoginPageController(
+            MessageSource messageSource,
+            UserService userService) {
+        super(userService);
         this.messageSource = messageSource;
     }
 

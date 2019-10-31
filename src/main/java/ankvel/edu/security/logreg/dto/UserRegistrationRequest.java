@@ -1,10 +1,12 @@
 package ankvel.edu.security.logreg.dto;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class UserRegistrationRequest {
 
     @NotEmpty
+    @Size(min = 3, max = 30)
     private String name;
 
     @NotEmpty

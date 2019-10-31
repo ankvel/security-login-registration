@@ -1,4 +1,4 @@
-<#import "lib/utils.ftl" as u>
+<#import "lib/utils.ftl" as u/>
 <#import "/spring.ftl" as spring/>
 
 <#assign pageTitle><@spring.message "page.user.registration.title"/></#assign>
@@ -13,7 +13,8 @@
                     <label for="username"><@spring.message "page.user.registration.email"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="text" class="some-input" name="email" id="email" autofocus/>
+                    <@spring.formInput "userRegistrationRequest.email" "class='some-input' autofocus" />
+                    <@u.showErrors />
                 </div>
             </div>
 
@@ -22,7 +23,8 @@
                     <label for="name"><@spring.message "page.user.registration.name"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="text" class="some-input" name="name" id="name" autofocus/>
+                    <@spring.formInput "userRegistrationRequest.name" "class='some-input'" />
+                    <@u.showErrors />
                 </div>
             </div>
 
@@ -31,7 +33,8 @@
                     <label for="password"><@spring.message "page.user.registration.password"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="password" class="some-input" name="password" id="password" />
+                    <@spring.formPasswordInput "userRegistrationRequest.password" "class='some-input'" />
+                    <@u.showErrors />
                 </div>
             </div>
 
@@ -40,7 +43,8 @@
                     <label for="password"><@spring.message "page.user.registration.repeat.password"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="password" class="some-input" name="passwordAgain" id="passwordAgain" />
+                    <@spring.formPasswordInput "userRegistrationRequest.passwordAgain" "class='some-input'" />
+                    <@u.showErrors />
                 </div>
             </div>
 
@@ -51,10 +55,6 @@
             </div>
         </div>
     </form>
-
-    <#if registrationErrors??>
-        <@u.showMessagesData messagesData = registrationErrors/>
-    </#if>
 </@u.page>
 
 

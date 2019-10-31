@@ -2,13 +2,15 @@ package ankvel.edu.security.logreg.controller;
 
 import ankvel.edu.security.logreg.domain.SomeUser;
 import ankvel.edu.security.logreg.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 public abstract class BasePageController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    protected BasePageController(UserService userService) {
+        this.userService = userService;
+    }
 
     @ModelAttribute("currentUser")
     public SomeUser currentUser() {

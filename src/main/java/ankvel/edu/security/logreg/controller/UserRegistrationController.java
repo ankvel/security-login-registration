@@ -1,19 +1,19 @@
 package ankvel.edu.security.logreg.controller;
 
 import ankvel.edu.security.logreg.domain.SomeUser;
-import ankvel.edu.security.logreg.dto.MessagesData;
 import ankvel.edu.security.logreg.dto.UserRegistrationCompleteEvent;
 import ankvel.edu.security.logreg.dto.UserRegistrationData;
 import ankvel.edu.security.logreg.dto.UserRegistrationRequest;
 import ankvel.edu.security.logreg.exception.UserAlreadyExistsException;
 import ankvel.edu.security.logreg.service.UserRegistrationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import ankvel.edu.security.logreg.service.UserService;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import static java.util.Collections.singletonList;
 
 @Controller
 @RequestMapping("/user/registration")
@@ -36,18 +34,20 @@ public class UserRegistrationController extends BasePageController {
 
     private final MessageSource messageSource;
 
-    @Autowired
     public UserRegistrationController(
             UserRegistrationService userRegistrationService,
             ApplicationEventPublisher eventPublisher,
-            MessageSource messageSource) {
+            MessageSource messageSource,
+            UserService userService) {
+        super(userService);
         this.userRegistrationService = userRegistrationService;
         this.eventPublisher = eventPublisher;
         this.messageSource = messageSource;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String page() {
+    public String page(
+            @ModelAttribute("userRegistrationRequest") UserRegistrationRequest userRegistrationRequest) {
         return "userRegistration";
     }
 
@@ -57,31 +57,28 @@ public class UserRegistrationController extends BasePageController {
             @ModelAttribute("userRegistrationRequest") @Valid UserRegistrationRequest userRegistrationRequest,
             BindingResult bindingResult,
             Model model) {
+
+        if (bindingResult.hasErrors()) {
+            return "userRegistration";
+        }
         try {
             UserRegistrationData userRegistrationData = getUserRegistrationData(userRegistrationRequest, httpServletRequest);
             SomeUser user = userRegistrationService.registerUser(userRegistrationData);
             eventPublisher.publishEvent(new UserRegistrationCompleteEvent(user, userRegistrationData));
         } catch (UserAlreadyExistsException ex) {
-            return handleUserAlreadyExists(ex, model);
-        }
-        if (bindingResult.hasErrors()) {
+            handleUserAlreadyExists(ex, bindingResult);
             return "userRegistration";
         }
         return "userRegistrationSuccess";
     }
 
-    private String handleUserAlreadyExists(UserAlreadyExistsException ex, Model model) {
+    private void handleUserAlreadyExists(UserAlreadyExistsException ex, BindingResult bindingResult) {
 
         Locale locale = LocaleContextHolder.getLocale();
         String email = ex.getEmail();
-        String registrationErrorsMessage = messageSource.getMessage("error.user.registration.title", null, locale);
         String userAlreadyExistsMessage = messageSource.getMessage(
                 "error.user.registration.already.exists", new String[]{email}, locale);
-
-        MessagesData registrationErrors = new MessagesData(
-                MessagesData.Type.ERROR, registrationErrorsMessage, singletonList(userAlreadyExistsMessage));
-        model.addAttribute("registrationErrors", registrationErrors);
-        return "userRegistration";
+        bindingResult.addError(new FieldError("userRegistrationRequest", "email", userAlreadyExistsMessage));
     }
 
     private UserRegistrationData getUserRegistrationData(

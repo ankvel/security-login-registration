@@ -5,7 +5,6 @@ import ankvel.edu.security.logreg.domain.UserVerification;
 import ankvel.edu.security.logreg.dto.UserVerificationValidationResult;
 import ankvel.edu.security.logreg.repository.UserRepository;
 import ankvel.edu.security.logreg.repository.UserVerificationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +18,6 @@ public class UserVerificationServiceImpl implements UserVerificationService {
 
     private final UserRepository userRepository;
 
-    @Autowired
     public UserVerificationServiceImpl(
             UserVerificationRepository userVerificationRepository,
             UserRepository userRepository) {

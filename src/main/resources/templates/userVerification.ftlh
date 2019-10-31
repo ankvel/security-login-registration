@@ -13,7 +13,8 @@
                     <label for="email"><@spring.message "page.user.verification.email"/></label>
                 </div>
                 <div class="col-input">
-                    <input type="text" class="some-input" name="email" id="email" autofocus/>
+                    <@spring.formInput "userVerificationRequest.email" "class='some-input' autofocus" />
+                    <@u.showErrors />
                 </div>
             </div>
 

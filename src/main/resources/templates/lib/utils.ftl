@@ -64,9 +64,21 @@
     </#switch>
         <#if messagesData.message??>${messagesData.message}</#if>
         <#if messagesData.messages??>
-            <#list messagesData.messages as message>
-                <li>${message}</li>
-            </#list>
+            <ul>
+                <#list messagesData.messages as message>
+                    <li>${message}</li>
+                </#list>
+            </ul>
         </#if>
     </div>
+</#macro>
+
+<#macro showErrors>
+    <#if spring.status.errorMessages?has_content>
+        <div class="some-block some-error some-border">
+            <#list spring.status.errorMessages as error>
+                ${error}<br/>
+            </#list>
+        </div>
+    </#if>
 </#macro>

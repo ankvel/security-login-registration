@@ -2,7 +2,6 @@ package ankvel.edu.security.logreg.config;
 
 import ankvel.edu.security.logreg.security.CustomAuthenticationProvider;
 import ankvel.edu.security.logreg.security.CustomLogoutSuccessHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -23,7 +22,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
-    @Autowired
     public WebSecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
