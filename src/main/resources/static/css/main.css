@@ -43,7 +43,6 @@ nav ul li {
     background-color: #f2f2f2;
     border-color: #e4e4e4;
     padding: 10px;
-    margin-bottom: 10px;
 }
 
 .some-success {
@@ -79,16 +78,11 @@ nav ul li {
 .some-container {
   background-color: #f2f2f2;
   border-color: #e4e4e4;
-  padding: 10px;
   margin-bottom: 10px;
 }
 
 .some-container .row {
-  margin-bottom: 10px;
-}
-
-.some-container .row:last-child {
-  margin-bottom: 0px;
+  padding: 10px;
 }
 
 .some-container .row:after {
@@ -116,4 +110,24 @@ nav ul li {
     border: 1px solid #ccc;
     padding: 6px 12px;
     border-radius: 4px;
+}
+
+.some-popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.some-popup .some-popup-content {
+  visibility: hidden;
+  position: absolute;
+  cursor: default;
+  z-index: 1;
+  max-height: 200px;
+  //overflow-y: scroll;
+  overflow: auto;
+}
+
+.some-popup .show {
+  visibility: visible;
 }

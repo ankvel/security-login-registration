@@ -38,6 +38,19 @@
                     </li>
                 </#if>
             </#if>
+            <li>
+                <div class="some-popup" id="lang">
+                    <@spring.message "nav.item.lang"/>
+                    <div class="some-popup-content some-container some-border" id="langContent">
+                        <div class="row">
+                            <a href="?lang=en"><@spring.message "nav.item.lang.en"/></a>
+                        </div>
+                        <div class="row">
+                            <a href="?lang=ru"><@spring.message "nav.item.lang.ru"/></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
 </#macro>
