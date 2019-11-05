@@ -1,5 +1,6 @@
 package ankvel.edu.security.logreg.repository;
 
+import ankvel.edu.security.logreg.domain.SomeRole;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,12 +18,14 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.Duration;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @DataJpaTest
-@ContextConfiguration(initializers = {LoadSchemeTest.Initializer.class})
+@ContextConfiguration(initializers = {RoleRepositoryContainerTest.Initializer.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
 @Testcontainers
-public class LoadSchemeTest {
+public class RoleRepositoryContainerTest {
 
     @BeforeEach
     public void init() {
@@ -44,13 +47,16 @@ public class LoadSchemeTest {
     private Flyway flyway;
 
     @Test
-    void test() {
+    public void test() {
+        SomeRole role = new SomeRole("ROLE_SOME_TEST");
+        SomeRole savedRole = roleRepository.save(role);
+        assertThat(savedRole.getId()).isNotNull();
 
-    }
-
-    @Test
-    void test2() {
-
+        assertThat(roleRepository.findAll()).extracting(SomeRole::getName).containsExactlyInAnyOrder(
+            "ROLE_SOME_TEST",
+            "ROLE_SOME_ADMIN",
+            "ROLE_SOME_USER"
+        );
     }
 
     static class Initializer
