@@ -1,6 +1,6 @@
 package ankvel.edu.security.logreg.repository;
 
-import ankvel.edu.security.logreg.domain.SomeRole;
+import ankvel.edu.security.logreg.domain.SomeUser;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,19 +17,18 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.Duration;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-@ContextConfiguration(initializers = {RoleRepositoryContainerTest.Initializer.class})
+@ContextConfiguration(initializers = {UserRepositoryContainerTest.Initializer.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
 @Testcontainers
-class RoleRepositoryContainerTest {
+class UserRepositoryContainerTest {
 
     @Autowired
-    private RoleRepository roleRepository;
+    private UserRepository userRepository;
 
     @Container
     private static final PostgreSQLContainer postgreSQLContainer =
@@ -59,24 +58,11 @@ class RoleRepositoryContainerTest {
     }
 
     @Test
-    void shouldContainBasicRoles() {
-        assertThat(roleRepository.findAll()).extracting(SomeRole::getName).containsExactlyInAnyOrder(
-                "ROLE_SOME_ADMIN",
-                "ROLE_SOME_USER"
+    void shouldContainBasicUsers() {
+        assertThat(userRepository.findAll()).extracting(SomeUser::getName).containsExactlyInAnyOrder(
+                "some1",
+                "some2",
+                "some3"
         );
-    }
-
-    @Test
-    void shouldSaveThenFindRole() {
-
-        Optional<SomeRole> roleOpt = roleRepository.findByName("ROLE_SOME_TEST");
-        assertThat(roleOpt).isNotPresent();
-
-        SomeRole role = new SomeRole("ROLE_SOME_TEST");
-        SomeRole savedRole = roleRepository.save(role);
-        assertThat(savedRole.getId()).isNotNull();
-
-        roleOpt = roleRepository.findByName("ROLE_SOME_TEST");
-        assertThat(roleOpt).isPresent();
     }
 }

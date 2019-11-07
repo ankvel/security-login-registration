@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 import static java.util.Collections.singletonList;
 
 @Service
@@ -54,8 +56,12 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
         someUser.setEmail(registrationRequest.getEmail());
         someUser.setName(registrationRequest.getName());
         someUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
-        SomeRole role = roleRepository.findByName("ROLE_SOME_USER");
-        someUser.setRoles(singletonList(role));
+        Optional<SomeRole> roleOpt = roleRepository.findByName("ROLE_SOME_USER");
+        if (roleOpt.isPresent()) {
+            someUser.setRoles(singletonList(roleOpt.get()));
+        } else {
+            throw new IllegalStateException("Role not found. role: ROLE_SOME_USER");
+        }
         return someUser;
     }
 
