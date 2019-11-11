@@ -20,7 +20,7 @@ import java.time.Duration;
 @DataJpaTest
 @ContextConfiguration(initializers = {LoadSchemeTest.Initializer.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ActiveProfiles("test")
+@ActiveProfiles("it-test")
 @Testcontainers
 public class LoadSchemeTest {
 
