@@ -10,9 +10,9 @@ import java.util.stream.Stream;
 
 public interface UserVerificationRepository extends JpaRepository<UserVerification, Long> {
 
-    Optional<UserVerification> findByToken(String token);
+    Optional<UserVerification> findByTokenAndType(String token, UserVerification.Type type);
 
-    Optional<UserVerification> findByUser(SomeUser user);
+    Optional<UserVerification> findByUserAndType(SomeUser user, UserVerification.Type type);
 
     Stream<UserVerification> findAllByExpireDateLessThan(Instant now);
 

@@ -2,6 +2,7 @@ CREATE TABLE user_verification
 (
     id BIGINT NOT NULL,
     token CHARACTER VARYING(255),
+    type CHARACTER VARYING(20),
     user_id BIGINT NOT NULL,
     create_date TIMESTAMP,
     expire_date TIMESTAMP,

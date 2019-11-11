@@ -32,8 +32,7 @@ public class UserRegistrationCompleteListener {
     public void onRegistrationComplete(UserRegistrationCompleteEvent event) {
         SomeUser user = event.getUser();
         UserVerification userVerification = userVerificationService.createVerification(user);
-        userVerificationMailService.sendVerificationTokenEmail(
-                user, userVerification.getToken(), event.getUserRegistrationData().getLocale());
+        userVerificationMailService.sendVerificationTokenEmail(userVerification);
         log.info("A new user registration complete. user: {}", event.getUser());
     }
 }

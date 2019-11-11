@@ -29,7 +29,7 @@ public class UserVerificationServiceImpl implements UserVerificationService {
     @Transactional
     public UserVerification createVerification(SomeUser user) {
         String token = UUID.randomUUID().toString();
-        UserVerification result = new UserVerification(token, user);
+        UserVerification result = new UserVerification(UserVerification.Type.REGISTRATION, token, user);
         userVerificationRepository.save(result);
         return result;
     }
@@ -38,7 +38,8 @@ public class UserVerificationServiceImpl implements UserVerificationService {
     @Transactional
     public UserVerificationValidationResult verifyUser(String token) {
 
-        Optional<UserVerification> userVerificationOpt = userVerificationRepository.findByToken(token);
+        Optional<UserVerification> userVerificationOpt = userVerificationRepository.findByTokenAndType(
+                token, UserVerification.Type.REGISTRATION);
         if (userVerificationOpt.isPresent()) {
             UserVerification userVerification = userVerificationOpt.get();
             SomeUser user = userVerification.getUser();

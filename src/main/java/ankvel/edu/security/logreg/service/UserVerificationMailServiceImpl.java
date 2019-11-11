@@ -1,13 +1,12 @@
 package ankvel.edu.security.logreg.service;
 
 import ankvel.edu.security.logreg.domain.SomeUser;
+import ankvel.edu.security.logreg.domain.UserVerification;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
-import java.util.Locale;
 
 @Service
 public class UserVerificationMailServiceImpl implements UserVerificationMailService {
@@ -32,16 +31,17 @@ public class UserVerificationMailServiceImpl implements UserVerificationMailServ
     }
 
     @Override
-    public void sendVerificationTokenEmail(SomeUser user, String token, Locale locale) {
-        SimpleMailMessage simpleMailMessage = constructEmailMessage(user, token, locale);
+    public void sendVerificationTokenEmail(UserVerification userVerification) {
+        SimpleMailMessage simpleMailMessage = constructEmailMessage(userVerification);
         mailSender.send(simpleMailMessage);
     }
 
-    private SimpleMailMessage constructEmailMessage(SomeUser user, String token, Locale locale) {
-
+    private SimpleMailMessage constructEmailMessage(UserVerification userVerification) {
+        SomeUser user = userVerification.getUser();
+        String token = userVerification.getToken();
         String recipientAddress = user.getEmail();
-        String subject = "Registration Confirmation";
-        String confirmationUrl = appBaseUrl + "/user/verification/confirm/" + token;
+        String subject = userVerification.getType().toString() + " Confirmation";
+        String confirmationUrl = appBaseUrl + "/user/verification/" + token;
         String message = "Please complete your registration by following the confirmation URL";
 
         SimpleMailMessage email = new SimpleMailMessage();

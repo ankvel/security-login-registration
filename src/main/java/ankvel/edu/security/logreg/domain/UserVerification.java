@@ -9,11 +9,19 @@ import java.time.temporal.ChronoUnit;
 @SequenceGenerator(name = "user_verification_seq", sequenceName = "user_verification_seq", allocationSize = 25)
 public class UserVerification {
 
+    public enum Type {
+        REGISTRATION,
+        PASSWORD_RESET
+    }
+
     private static final long DEFAULT_EXPIRE_DAYS = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_verification_seq")
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     private String token;
 
@@ -28,7 +36,8 @@ public class UserVerification {
     public UserVerification() {
     }
 
-    public UserVerification(String token, SomeUser user) {
+    public UserVerification(Type type, String token, SomeUser user) {
+        this.type = type;
         this.token = token;
         this.user = user;
         createDate = Instant.now();
@@ -41,6 +50,14 @@ public class UserVerification {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public String getToken() {
