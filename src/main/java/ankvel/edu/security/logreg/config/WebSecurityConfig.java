@@ -41,11 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasRole("SOME_ADMIN")
                 .antMatchers("/", "/home").permitAll()
                 .antMatchers("/user/registration").permitAll()
-                .antMatchers("/user/verification").permitAll()
-                .antMatchers("/user/verification/*").permitAll()
+                .antMatchers("/user/verification", "/user/verification/*").permitAll()
                 .antMatchers("/manage/**").hasRole("SOME_ADMIN")
                 .antMatchers("/user/info").permitAll()
                 .antMatchers("/login*").permitAll()
+                .antMatchers("/password-reset", "/password-reset/*").permitAll()
                 .antMatchers(
                         "/lib/bootstrap/**",
                         "/css/**",

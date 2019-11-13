@@ -1,10 +1,10 @@
 package ankvel.edu.security.logreg.dto;
 
-public class UserVerificationValidationResult {
+public class PasswordChangeResult {
 
     private final boolean success;
 
-    public UserVerificationValidationResult(boolean success) {
+    public PasswordChangeResult(boolean success) {
         this.success = success;
     }
 

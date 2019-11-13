@@ -2,7 +2,7 @@ package ankvel.edu.security.logreg.service;
 
 import ankvel.edu.security.logreg.domain.SomeUser;
 import ankvel.edu.security.logreg.domain.UserVerification;
-import ankvel.edu.security.logreg.dto.UserVerificationValidationResult;
+import ankvel.edu.security.logreg.dto.UserVerificationResult;
 import ankvel.edu.security.logreg.repository.UserRepository;
 import ankvel.edu.security.logreg.repository.UserVerificationRepository;
 import org.springframework.stereotype.Service;
@@ -36,7 +36,7 @@ public class UserVerificationServiceImpl implements UserVerificationService {
 
     @Override
     @Transactional
-    public UserVerificationValidationResult verifyUser(String token) {
+    public UserVerificationResult verifyUser(String token) {
 
         Optional<UserVerification> userVerificationOpt = userVerificationRepository.findByTokenAndType(
                 token, UserVerification.Type.REGISTRATION);
@@ -46,9 +46,9 @@ public class UserVerificationServiceImpl implements UserVerificationService {
             user.setEnabled(true);
             userRepository.save(user);
             userVerificationRepository.delete(userVerificationOpt.get());
-            return new UserVerificationValidationResult(true);
+            return new UserVerificationResult(true);
         } else {
-            return new UserVerificationValidationResult(false);
+            return new UserVerificationResult(false);
         }
     }
 }

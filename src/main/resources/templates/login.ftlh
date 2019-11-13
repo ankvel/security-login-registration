@@ -11,6 +11,7 @@
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="some-container some-border">
+
             <div class="row">
                 <div class="col-label">
                     <label for="username"><@spring.message "page.login.email"/></label>
@@ -19,6 +20,7 @@
                     <input type="text" class="some-input" name="username" id="username" autofocus/>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-label">
                     <label for="password"><@spring.message "page.login.password"/></label>
@@ -27,11 +29,19 @@
                     <input type="password" class="some-input" name="password" id="password" />
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-input">
+                    <a href="/password-reset"><@spring.message "page.login.forgot"/></a>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-label">
                     <button type="submit" class="some-button"><@spring.message "page.login.submit"/></button>
                 </div>
             </div>
+
         </div>
     </form>
 

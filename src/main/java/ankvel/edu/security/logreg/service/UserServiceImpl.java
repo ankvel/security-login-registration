@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 import static java.util.Collections.emptyList;
 
 @Service
@@ -40,5 +42,11 @@ public class UserServiceImpl implements UserService {
         }
         return userRepository.findByEmail(name).orElseThrow(() ->
                 new UsernameNotFoundException("No user found with username: " + name));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<SomeUser> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

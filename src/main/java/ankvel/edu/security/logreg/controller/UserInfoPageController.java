@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/user/info")
 public class UserInfoPageController extends BasePageController {
 
-    protected UserInfoPageController(UserService userService) {
+    public UserInfoPageController(UserService userService) {
         super(userService);
     }
 

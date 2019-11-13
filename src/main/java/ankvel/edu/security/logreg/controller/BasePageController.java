@@ -8,7 +8,7 @@ public abstract class BasePageController {
 
     private final UserService userService;
 
-    protected BasePageController(UserService userService) {
+    public BasePageController(UserService userService) {
         this.userService = userService;
     }
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,13 +37,20 @@ public class UserVerificationMailServiceImpl implements UserVerificationMailServ
         mailSender.send(simpleMailMessage);
     }
 
+    @Override
+    @Async
+    public void sendAsyncVerificationTokenEmail(UserVerification userVerification) {
+        SimpleMailMessage simpleMailMessage = constructEmailMessage(userVerification);
+        mailSender.send(simpleMailMessage);
+    }
+
     private SimpleMailMessage constructEmailMessage(UserVerification userVerification) {
         SomeUser user = userVerification.getUser();
         String token = userVerification.getToken();
         String recipientAddress = user.getEmail();
-        String subject = userVerification.getType().toString() + " Confirmation";
-        String confirmationUrl = appBaseUrl + "/user/verification/" + token;
-        String message = "Please complete your registration by following the confirmation URL";
+        String subject = getSubject(userVerification);
+        String confirmationUrl = appBaseUrl + getUrlPart(userVerification) + token;
+        String message = getMessage(userVerification);
 
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(recipientAddress);
@@ -50,5 +58,38 @@ public class UserVerificationMailServiceImpl implements UserVerificationMailServ
         email.setText(message + " \r\n" + confirmationUrl);
         email.setFrom(from);
         return email;
+    }
+
+    private String getSubject(UserVerification userVerification) {
+        switch (userVerification.getType()) {
+            case REGISTRATION:
+                return "Registration Confirmation";
+            case PASSWORD_RESET:
+                return "Password Reset Confirmation";
+            default:
+                throw new IllegalArgumentException("illegal userVerification.type");
+        }
+    }
+
+    private String getUrlPart(UserVerification userVerification) {
+        switch (userVerification.getType()) {
+            case REGISTRATION:
+                return "/user/verification/";
+            case PASSWORD_RESET:
+                return "/password-reset/";
+            default:
+                throw new IllegalArgumentException("illegal userVerification.type");
+        }
+    }
+
+    private String getMessage(UserVerification userVerification) {
+        switch (userVerification.getType()) {
+            case REGISTRATION:
+                return "Please complete your registration by following the confirmation URL";
+            case PASSWORD_RESET:
+                return "For changing your password please follow the URL";
+            default:
+                throw new IllegalArgumentException("illegal userVerification.type");
+        }
     }
 }

@@ -3,7 +3,7 @@
 
 <#assign pageTitle><@spring.message "page.user.registration.title"/></#assign>
 <@u.page title="${pageTitle}">
-    <form name="loginForm" role="form" action="" method="post">
+    <form name="userRegistrationForm" role="form" action="" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
         <div class="some-container some-border">
