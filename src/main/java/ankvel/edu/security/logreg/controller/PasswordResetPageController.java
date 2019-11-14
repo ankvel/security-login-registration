@@ -5,6 +5,7 @@ import ankvel.edu.security.logreg.domain.UserVerification;
 import ankvel.edu.security.logreg.dto.PasswordChangeByTokenRequest;
 import ankvel.edu.security.logreg.dto.PasswordChangeResult;
 import ankvel.edu.security.logreg.dto.PasswordResetVerificationRequest;
+import ankvel.edu.security.logreg.repository.UserRepository;
 import ankvel.edu.security.logreg.service.PasswordChangeService;
 import ankvel.edu.security.logreg.service.UserService;
 import ankvel.edu.security.logreg.service.UserVerificationMailService;
@@ -25,16 +26,17 @@ public class PasswordResetPageController extends BasePageController {
 
     private final PasswordChangeService passwordChangeService;
 
-    private final UserService userService;
+    private final UserRepository userRepository;
 
     private final UserVerificationMailService userVerificationMailService;
 
     public PasswordResetPageController(
             UserService userService,
+            UserRepository userRepository,
             PasswordChangeService passwordChangeService,
             UserVerificationMailService userVerificationMailService) {
         super(userService);
-        this.userService = userService;
+        this.userRepository = userRepository;
         this.passwordChangeService = passwordChangeService;
         this.userVerificationMailService = userVerificationMailService;
     }
@@ -90,7 +92,7 @@ public class PasswordResetPageController extends BasePageController {
 
     private boolean sendVerification(PasswordResetVerificationRequest verificationRequest) {
         String email = verificationRequest.getEmail();
-        Optional<SomeUser> userOpt = userService.findByEmail(email);
+        Optional<SomeUser> userOpt = userRepository.findByEmail(email);
         if (userOpt.isPresent()) {
             SomeUser user = userOpt.get();
             UserVerification verification = passwordChangeService.createPasswordResetVerification(user);
